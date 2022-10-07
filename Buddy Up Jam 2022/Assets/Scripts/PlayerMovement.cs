@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool attack = false;
     public Rigidbody2D attackpos;
     public Rigidbody2D location;
-
+    public GameObject winUI;
     Vector2 movement;
 
     // Update is called once per frame
@@ -49,7 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D collision) {
 
-        if (collision.gameObject.tag == "enemy") health -= 5;
+        if (collision.gameObject.tag == "enemyHitBox") health -= 5;
+
+        if (collision.gameObject.tag == "Finish") {
+            Debug.Log("Good Job");
+            winUI.SetActive(true);
+        }
 
     }
     
